@@ -32,11 +32,12 @@ export default function Button({
   size = "md",
   startIcon,
   onClick,
-  fullWidth = false,  
+  fullWidth = false, 
+  loading 
 }: ButtonProps) {
   return (
     <button
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${fullWidth ? " w-full flex justify-center items-center" : ""} `} onClick={onClick}
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${fullWidth ? " w-full flex justify-center items-center" : ""} `} onClick={onClick} disabled={loading}
     >
        {startIcon && <span className="pr-2">{startIcon}</span>} {text}
     </button>

@@ -6,12 +6,19 @@ import { useContext, useRef } from "react";
 
 import MessageBubble from "../components/UI/MessageBubble";
 import { WebSocketContext } from "../context/wsContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ChatPage() {
   const context = useContext(WebSocketContext);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { messages, sendMessages, onlineCount, roomId, currentUsername } =
-    context;
+  const {
+    messages,
+    sendMessages,
+    onlineCount,
+    roomId,
+    currentUsername,
+    leaveRoom,
+  } = context;
 
   function handleSend() {
     const message = inputRef.current?.value.trim();
@@ -19,6 +26,13 @@ export default function ChatPage() {
 
     sendMessages(message);
     inputRef.current.value = "";
+  }
+
+  const navigate = useNavigate();
+
+  function handleLeave() {
+    leaveRoom();
+    navigate("/");
   }
 
   return (
@@ -34,7 +48,12 @@ export default function ChatPage() {
           </div>
         </div>
         <div>
-          <Button text="Leave" variant="secondary" startIcon={<LogOut />} />
+          <Button
+            text="Leave"
+            variant="secondary"
+            startIcon={<LogOut />}
+            onClick={handleLeave}
+          />
         </div>
       </div>
 

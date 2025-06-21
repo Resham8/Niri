@@ -15,8 +15,6 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
 
   const connect = (roomId: string, username: string) => {
     const ws = new WebSocket("ws://localhost:8080");
-    
-    
 
     ws.onopen = () => {
       ws.send(
@@ -28,7 +26,7 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
     };
 
     setCurrentUsername(username);
-     console.log("currentUsername set to:", username);
+    console.log("currentUsername set to:", username);
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -60,6 +58,17 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const leaveRoom = () => {
+    if (wsRef.current) {
+      wsRef.current.close();
+      wsRef.current = null;
+    }
+    setMessages([]);
+    setRoomId("");
+    setOnlineCount(1);
+    setCurrentUsername("");
+  };
+
   useEffect(() => {
     return () => {
       wsRef.current?.close();
@@ -73,6 +82,7 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
     roomId,
     onlineCount,
     currentUsername,
+    leaveRoom
   };
 
   return (

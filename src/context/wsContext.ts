@@ -13,6 +13,7 @@ export interface WsContextType {
   roomId: string;
   onlineCount: number;
   currentUsername: string;
+  leaveRoom: () => void;
 }
 
 export const WebSocketContext = createContext<WsContextType | undefined>(undefined);

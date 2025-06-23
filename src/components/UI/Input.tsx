@@ -2,8 +2,9 @@ interface InputProps {
   refrance?:any
   placeholder: string;
   error?: string;
+  onKeyDownfn?:(event:any) => void;
 }
-export default function Input({  placeholder,refrance, error }: InputProps) {
+export default function Input({  placeholder,refrance, error, onKeyDownfn }: InputProps) {
   return (
     <div className="w-full ">
       
@@ -14,6 +15,7 @@ export default function Input({  placeholder,refrance, error }: InputProps) {
         }`}
         ref={refrance}
         placeholder={placeholder}
+        onKeyDown={onKeyDownfn}
       />
       {error && (
         <p className="text-red-500 text-sm mt-1" role="alert">

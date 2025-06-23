@@ -28,6 +28,12 @@ export default function ChatPage() {
     inputRef.current.value = "";
   }
 
+  function handleKeyPress(event){
+    if(event.key === 'Enter'){
+      handleSend();
+    }
+  }
+
   const navigate = useNavigate();
 
   function handleLeave() {
@@ -69,7 +75,7 @@ export default function ChatPage() {
       </div>
 
       <div className="bg-white/80 border-t bordeer-purple-100 px-6 py-4 flex gap-5">
-        <Input placeholder="Type a message......." refrance={inputRef} />
+        <Input placeholder="Type a message......." refrance={inputRef} onKeyDownfn={handleKeyPress}/>
         <IconButton icon={<Send />} onClick={handleSend} />
       </div>
     </div>

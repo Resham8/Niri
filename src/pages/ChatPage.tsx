@@ -49,7 +49,7 @@ export default function ChatPage() {
             <Sofa className="text-white" />
           </div>
           <div className="flex flex-col">
-            <h1 className="text-xl font-semibold text-gray-900">{roomId}</h1>
+            <h1 className="text-xl font-semibold text-gray-900">Room {roomId}</h1>
             <p className="text-sm text-gray-500">{onlineCount} online</p>
           </div>
         </div>
